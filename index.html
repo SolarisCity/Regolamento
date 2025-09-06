@@ -26,11 +26,14 @@
       border: none;
       color: #f1f1f1;
       font-size: 16px;
-      margin: 0 15px;
+      margin: 0 10px;
       cursor: pointer;
       padding: 10px 20px;
       border-radius: 5px;
       transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .navbar button:hover {
@@ -62,13 +65,27 @@
       color: #ffcc00;
       text-decoration: none;
     }
+
+    .leak-item {
+      background: #2a2a2a;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
   </style>
 </head>
 <body>
   <!-- Navbar -->
   <div class="navbar">
-    <button class="tablink active" onclick="openTab('info', this)">ℹ️ Informazioni</button>
-    <button class="tablink" onclick="openTab('rules', this)">📜 Regolamento</button>
+    <button class="tablink active" onclick="openTab('info', this)">
+      <span>ℹ️</span> Informazioni
+    </button>
+    <button class="tablink" onclick="openTab('rules', this)">
+      <span>📜</span> Regolamento
+    </button>
+    <button class="tablink" onclick="openTab('leaks', this)">
+      <span>🔒</span> Leak
+    </button>
   </div>
 
   <!-- Sezione Informazioni -->
@@ -92,11 +109,29 @@
     </p>
   </div>
 
+  <!-- Sezione Leak -->
+  <div id="leaks" class="content" style="display:none;">
+    <h1>🔒 Leak & Anteprime</h1>
+    <div class="leak-item">
+      <h3>Nuova mappa in arrivo!</h3>
+      <p>Presto sarà disponibile un'espansione della città con nuove aree esplorabili.</p>
+    </div>
+    <div class="leak-item">
+      <h3>Eventi PvP</h3>
+      <p>Stiamo preparando tornei ufficiali con premi speciali 🎁</p>
+    </div>
+    <div class="leak-item">
+      <h3>Nuove professioni</h3>
+      <p>In arrivo nuove meccaniche di lavoro per arricchire l’esperienza Semi-RP.</p>
+    </div>
+  </div>
+
   <script>
     function openTab(tabName, element) {
       // Nascondi tutte le sezioni
       document.getElementById("info").style.display = "none";
       document.getElementById("rules").style.display = "none";
+      document.getElementById("leaks").style.display = "none";
 
       // Mostra quella scelta
       document.getElementById(tabName).style.display = "block";
