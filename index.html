@@ -9,39 +9,84 @@
       background: #121212;
       color: #f1f1f1;
       margin: 0;
-      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
     }
 
-    /* Barra menu */
-    .navbar {
+    /* Barra superiore */
+    .topbar {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: center;
       background: #1e1e1e;
-      padding: 15px;
+      padding: 10px 20px;
       border-bottom: 2px solid #ffcc00;
     }
 
-    .navbar button {
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffcc00;
+    }
+
+    .topbar-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .topbar-links a {
+      background: #ffcc00;
+      color: #121212;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .topbar-links a:hover {
+      background: #ffaa00;
+    }
+
+    /* Layout principale */
+    .main {
+      display: flex;
+      flex: 1;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 200px;
+      background: #1e1e1e;
+      padding-top: 20px;
+      border-right: 2px solid #ffcc00;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .sidebar button {
       background: none;
       border: none;
       color: #f1f1f1;
       font-size: 16px;
-      margin: 0 10px;
+      width: 100%;
+      text-align: left;
+      padding: 12px 20px;
       cursor: pointer;
-      padding: 10px 20px;
-      border-radius: 5px;
       transition: 0.3s;
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
-    .navbar button:hover {
+    .sidebar button:hover {
       background: #333;
       color: #ffcc00;
     }
 
-    .navbar button.active {
+    .sidebar button.active {
       background: #ffcc00;
       color: #121212;
       font-weight: bold;
@@ -49,21 +94,26 @@
 
     /* Contenuto */
     .content {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 20px;
+      flex: 1;
+      padding: 30px;
+    }
+
+    .section {
+      display: none;
+      max-width: 800px;
+      margin: auto;
       background: #1e1e1e;
+      padding: 20px;
       border-radius: 10px;
+    }
+
+    .section.active {
+      display: block;
     }
 
     h1 {
       text-align: center;
       color: #ffcc00;
-    }
-
-    a {
-      color: #ffcc00;
-      text-decoration: none;
     }
 
     .leak-item {
@@ -72,69 +122,80 @@
       border-radius: 8px;
       margin-bottom: 15px;
     }
+
+    a {
+      color: #ffcc00;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <div class="navbar">
-    <button class="tablink active" onclick="openTab('info', this)">
-      <span>ℹ️</span> Informazioni
-    </button>
-    <button class="tablink" onclick="openTab('rules', this)">
-      <span>📜</span> Regolamento
-    </button>
-    <button class="tablink" onclick="openTab('leaks', this)">
-      <span>🔒</span> Leak
-    </button>
-  </div>
-
-  <!-- Sezione Informazioni -->
-  <div id="info" class="content">
-    <h1>🌍 SolarisCity - Informazioni</h1>
-    <p><b>IP:</b> play.solariscity.it</p>
-    <p><b>Versione:</b> 1.20+</p>
-    <p><b>Discord:</b> <a href="https://discord.gg/tuoinvito" target="_blank">Unisciti qui</a></p>
-    <p><b>Tipo server:</b> Semi-RP Minecraft</p>
-  </div>
-
-  <!-- Sezione Regolamento -->
-  <div id="rules" class="content" style="display:none;">
-    <h1>📜 Regolamento</h1>
-    <p>
-      1. Vietato usare cheat, hack o mod che danno vantaggio.<br>
-      2. Rispetta tutti i giocatori e lo staff.<br>
-      3. Vietato spam, insulti o pubblicità.<br>
-      4. Gioca con spirito di RolePlay Semi-RP.<br>
-      5. Lo staff ha sempre l’ultima parola.
-    </p>
-  </div>
-
-  <!-- Sezione Leak -->
-  <div id="leaks" class="content" style="display:none;">
-    <h1>🔒 Leak & Anteprime</h1>
-    <div class="leak-item">
-      <h3>Nuova mappa in arrivo!</h3>
-      <p>Presto sarà disponibile un'espansione della città con nuove aree esplorabili.</p>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="logo">🌍 SolarisCity</div>
+    <div class="topbar-links">
+      <a href="https://discord.gg/tuoinvito" target="_blank">Discord</a>
+      <a href="https://store.solariscity.it" target="_blank">Store</a>
     </div>
-    <div class="leak-item">
-      <h3>Eventi PvP</h3>
-      <p>Stiamo preparando tornei ufficiali con premi speciali 🎁</p>
+  </div>
+
+  <!-- Layout principale -->
+  <div class="main">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <button class="tablink active" onclick="openTab('info', this)">ℹ️ Informazioni</button>
+      <button class="tablink" onclick="openTab('rules', this)">📜 Regolamento</button>
+      <button class="tablink" onclick="openTab('leaks', this)">🔒 Leak</button>
     </div>
-    <div class="leak-item">
-      <h3>Nuove professioni</h3>
-      <p>In arrivo nuove meccaniche di lavoro per arricchire l’esperienza Semi-RP.</p>
+
+    <!-- Contenuto -->
+    <div class="content">
+      <div id="info" class="section active">
+        <h1>🌍 Informazioni</h1>
+        <p><b>IP:</b> play.solariscity.it</p>
+        <p><b>Versione:</b> 1.20+</p>
+        <p><b>Discord:</b> <a href="https://discord.gg/tuoinvito" target="_blank">Unisciti qui</a></p>
+        <p><b>Tipo server:</b> Semi-RP Minecraft</p>
+      </div>
+
+      <div id="rules" class="section">
+        <h1>📜 Regolamento</h1>
+        <p>
+          1. Vietato usare cheat, hack o mod che danno vantaggio.<br>
+          2. Rispetta tutti i giocatori e lo staff.<br>
+          3. Vietato spam, insulti o pubblicità.<br>
+          4. Gioca con spirito di RolePlay Semi-RP.<br>
+          5. Lo staff ha sempre l’ultima parola.
+        </p>
+      </div>
+
+      <div id="leaks" class="section">
+        <h1>🔒 Leak & Anteprime</h1>
+        <div class="leak-item">
+          <h3>Nuova mappa in arrivo!</h3>
+          <p>Presto sarà disponibile un'espansione della città con nuove aree esplorabili.</p>
+        </div>
+        <div class="leak-item">
+          <h3>Eventi PvP</h3>
+          <p>Stiamo preparando tornei ufficiali con premi speciali 🎁</p>
+        </div>
+        <div class="leak-item">
+          <h3>Nuove professioni</h3>
+          <p>In arrivo nuove meccaniche di lavoro per arricchire l’esperienza Semi-RP.</p>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
     function openTab(tabName, element) {
       // Nascondi tutte le sezioni
-      document.getElementById("info").style.display = "none";
-      document.getElementById("rules").style.display = "none";
-      document.getElementById("leaks").style.display = "none";
-
+      let sections = document.getElementsByClassName("section");
+      for (let sec of sections) {
+        sec.classList.remove("active");
+      }
       // Mostra quella scelta
-      document.getElementById(tabName).style.display = "block";
+      document.getElementById(tabName).classList.add("active");
 
       // Aggiorna i bottoni attivi
       let buttons = document.getElementsByClassName("tablink");
