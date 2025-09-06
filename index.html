@@ -2,26 +2,62 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Regolamento - SolarisCity</title>
+  <title>SolarisCity - Server Minecraft</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       background: #121212;
       color: #f1f1f1;
-      text-align: center;
-      padding: 20px;
+      margin: 0;
+      padding: 0;
     }
-    h1 {
+
+    /* Barra menu */
+    .navbar {
+      display: flex;
+      justify-content: center;
+      background: #1e1e1e;
+      padding: 15px;
+      border-bottom: 2px solid #ffcc00;
+    }
+
+    .navbar button {
+      background: none;
+      border: none;
+      color: #f1f1f1;
+      font-size: 16px;
+      margin: 0 15px;
+      cursor: pointer;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .navbar button:hover {
+      background: #333;
       color: #ffcc00;
     }
-    .box {
-      background: #1e1e1e;
-      padding: 20px;
-      border-radius: 10px;
-      margin: 20px auto;
-      max-width: 800px;
-      text-align: left;
+
+    .navbar button.active {
+      background: #ffcc00;
+      color: #121212;
+      font-weight: bold;
     }
+
+    /* Contenuto */
+    .content {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #1e1e1e;
+      border-radius: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffcc00;
+    }
+
     a {
       color: #ffcc00;
       text-decoration: none;
@@ -29,9 +65,24 @@
   </style>
 </head>
 <body>
-  <h1>📜 Regolamento di SolarisCity</h1>
-  <div class="box">
-    <h2>Regole principali</h2>
+  <!-- Navbar -->
+  <div class="navbar">
+    <button class="tablink active" onclick="openTab('info', this)">ℹ️ Informazioni</button>
+    <button class="tablink" onclick="openTab('rules', this)">📜 Regolamento</button>
+  </div>
+
+  <!-- Sezione Informazioni -->
+  <div id="info" class="content">
+    <h1>🌍 SolarisCity - Informazioni</h1>
+    <p><b>IP:</b> play.solariscity.it</p>
+    <p><b>Versione:</b> 1.20+</p>
+    <p><b>Discord:</b> <a href="https://discord.gg/tuoinvito" target="_blank">Unisciti qui</a></p>
+    <p><b>Tipo server:</b> Semi-RP Minecraft</p>
+  </div>
+
+  <!-- Sezione Regolamento -->
+  <div id="rules" class="content" style="display:none;">
+    <h1>📜 Regolamento</h1>
     <p>
       1. Vietato usare cheat, hack o mod che danno vantaggio.<br>
       2. Rispetta tutti i giocatori e lo staff.<br>
@@ -41,13 +92,22 @@
     </p>
   </div>
 
-  <div class="box">
-    <h2>ℹ️ Info Server</h2>
-    <p>
-      IP: <b>play.solariscity.it</b><br>
-      Versione: 1.20+<br>
-      Discord: <a href="https://discord.gg/tuoinvito" target="_blank">Clicca qui</a>
-    </p>
-  </div>
+  <script>
+    function openTab(tabName, element) {
+      // Nascondi tutte le sezioni
+      document.getElementById("info").style.display = "none";
+      document.getElementById("rules").style.display = "none";
+
+      // Mostra quella scelta
+      document.getElementById(tabName).style.display = "block";
+
+      // Aggiorna i bottoni attivi
+      let buttons = document.getElementsByClassName("tablink");
+      for (let btn of buttons) {
+        btn.classList.remove("active");
+      }
+      element.classList.add("active");
+    }
+  </script>
 </body>
 </html>
